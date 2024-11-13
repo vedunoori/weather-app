@@ -23,7 +23,7 @@ class App extends React.Component {
       days.push({
         date: data.list[dayIndices[i]].dt_txt,
         weather_desc: data.list[dayIndices[i]].weather[0].description,
-        icon: data.list[dayIndices[i]].weather[0]?.icon,
+        icon: data.list[dayIndices[i]].weather[0].icon,
         temp: data.list[dayIndices[i]].main.temp
       });
     }
@@ -41,7 +41,6 @@ class App extends React.Component {
     ).then(resp => resp.json());
 
     if (api_data.cod === '200') {
-      console.log("api_data",api_data)
       await this.updateState(api_data);
       return true;
     } else return false;
@@ -70,7 +69,6 @@ class App extends React.Component {
   };
 
   render() {
-    console.log("this.state.days",this.state.days)
     const WeatherBoxes = () => {
       const weatherBoxes = this.state.days.slice(1).map(day => (
         <li>
